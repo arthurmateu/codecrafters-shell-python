@@ -16,7 +16,7 @@ def main():
         f.echo(arguments)
     elif main_command == "type":
         f.command_type(arguments)
-    elif os.path.isfile(main_command):
+    elif f.exists_in_path(main_command) or os.path.exists(main_command):
         f.run_command(command)
     else:
         print(f"{main_command}: command not found")
