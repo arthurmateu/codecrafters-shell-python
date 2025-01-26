@@ -16,6 +16,12 @@ def main():
         f.echo(arguments)
     elif main_command == "type":
         f.command_type(arguments)
+    elif main_command == "pwd":
+        print(os.getcwd())
+    elif main_command == "cd":
+        if len(arguments) == 0:
+            arguments = ["~"]
+        f.change_directory(arguments[0])
     elif f.exists_in_path(main_command) or os.path.exists(main_command):
         f.run_command(command)
     else:
