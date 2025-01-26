@@ -33,7 +33,5 @@ def run_command(cmd):
         if idx == 0: print(" (program name)", end="")
         print(f": {arg}")
 
-    program = subprocess.Popen(cmd)
-    print(f"Program Signature: {program.pid}")
-
-    program.wait()
+    program = subprocess.run(cmd, text=True, capture_output=True, check=True)
+    print(f"Program Signature: {program.stdout}")
