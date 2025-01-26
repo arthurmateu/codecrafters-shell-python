@@ -27,11 +27,14 @@ def command_type(cmd):
 
 
 def run_command(cmd):
+    subprocess.run(cmd)
+    """
     print(f"Program was passed {len(cmd)} args (including program name).")
     for idx, arg in enumerate(cmd):
         print(f"Arg #{idx}", end="")
         if idx == 0: print(" (program name)", end="")
         print(f": {arg}")
 
-    program = subprocess.run(cmd, text=True, capture_output=True, check=True)
+    program = subprocess.run(cmd, text=True, capture_output=True)
     print(f"Program Signature: {program.stdout}")
+    """
