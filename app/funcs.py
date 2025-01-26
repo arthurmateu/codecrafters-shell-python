@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-shell_builtins = ["echo", "exit", "type"]
+shell_builtins = ["echo", "exit", "type", "pwd", "cd"]
 
 
 def exists_in_path(cmd):
