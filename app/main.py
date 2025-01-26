@@ -1,17 +1,6 @@
 import sys
-
-shell_builtins = ["echo", "exit", "type"]
-
-
-def echo(arguments):
-    print(' '.join(arguments))
-
-def type(cmd):
-    cmd = cmd[0]
-    if cmd in shell_builtins:
-        print(f"{cmd} is a shell builtin")
-    else:
-        print(f"{cmd}: not found")
+import os
+from app import funcs as f
 
 def main():
     sys.stdout.write("$ ")
@@ -24,9 +13,11 @@ def main():
     if main_command == "exit":
         sys.exit(0)
     elif main_command == "echo":
-        echo(arguments)
+        f.echo(arguments)
     elif main_command == "type":
-        type(arguments)
+        f.command_type(arguments)
+    elif os.path.isfile(main_command):
+        f.run_command(command)
     else:
         print(f"{main_command}: command not found")
 
