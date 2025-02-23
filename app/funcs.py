@@ -60,7 +60,7 @@ def run_command(cmd):
         with open(cmd[-1], "w") as outfile:
             subprocess.run(cmd[:-2], stderr=outfile)
 
-    elif cmd[-2] == ">>":
+    elif cmd[-2] == "2>>":
         with open(cmd[-1], "a") as outfile:
             subprocess.run(cmd[:-2], stderr=outfile)
 
