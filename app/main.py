@@ -11,6 +11,9 @@ def main():
 
     main_command, *arguments = shlex.split(command)
 
+    if f.redirection(command):
+        f.run_command(command)
+        main()
 
     match main_command:
         case "exit":
