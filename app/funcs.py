@@ -16,7 +16,6 @@ def exists_in_path(cmd):
 
 
 def echo(arguments):
-    arguments = shlex.split(arguments)
 
     for i in range(len(arguments)):
         if arguments[i][0] == arguments[i][-1] and arguments[0] in quote_identifiers:
@@ -27,6 +26,8 @@ def echo(arguments):
 
 
 def command_type(cmd):
+    cmd = ''.join(cmd)
+
     if cmd in shell_builtins:
         print(f"{cmd} is a shell builtin")
 
@@ -42,10 +43,11 @@ def run_command(cmd):
 
 
 def change_directory(dir):
-    if not dir or dir == "~":
+    if not dir or dir == ["~"]:
         dir = os.getenv("HOME")
 
     try:
+        dir = ''.join(dir)
         os.chdir(dir)
     except:
         print(f"cd: {dir}: No such file or directory")

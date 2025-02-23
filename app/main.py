@@ -1,3 +1,4 @@
+import shlex
 import sys
 import os
 from app import funcs as f
@@ -7,14 +8,8 @@ def main():
     sys.stdout.flush()
 
     command = input()
-    separator = command.find(" ")
 
-    if separator > 0:
-        main_command = command[:separator]
-        arguments = command[separator+1:]
-    else:
-        main_command = command
-        arguments = ''
+    main_command, *arguments = shlex.split(command)
 
 
     match main_command:
