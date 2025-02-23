@@ -6,16 +6,16 @@ def main():
     sys.stdout.write("$ ")
     sys.stdout.flush()
 
-    command = input().strip()
-    separator = command.find(' ')
+    command = input()
+    separator = command.find(" ")
 
     if separator > 0:
         main_command = command[:separator]
-        arguments = f.clean_args(command[separator+1:])
-
+        arguments = command[separator+1:]
     else:
         main_command = command
-        arguments = []
+        arguments = ''
+
 
     match main_command:
         case "exit":
@@ -35,7 +35,7 @@ def main():
 
         case _:
             if f.exists_in_path(main_command) or os.path.exists(main_command):
-                f.run_command([main_command] + arguments)
+                f.run_command(command)
             else:
                 print(f"{main_command}: command not found")
 
