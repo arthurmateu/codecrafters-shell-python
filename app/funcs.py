@@ -1,8 +1,9 @@
 import os
 import subprocess
+import shlex
 
 shell_builtins = ["echo", "exit", "type", "pwd", "cd"]
-
+quote_identifiers = ["\"", "'"]
 
 def exists_in_path(cmd):
     path = os.getenv("PATH", "").split(":")
@@ -13,7 +14,14 @@ def exists_in_path(cmd):
 
 
 def echo(arguments):
+    arguments = shlex.split(arguments)
+
+    for i in range(len(arguments)):
+        if arguments[i][0] == arguments[i][-1] and arguments[0] in quote_identifiers:
+            arguments[i] = arguments[i][1:-1]
+
     print(" ".join(arguments))
+
 
 
 def command_type(cmd):
@@ -27,7 +35,7 @@ def command_type(cmd):
 
 
 def run_command(cmd):
-    subprocess.run(cmd) # fuck this
+    subprocess.run(cmd)
 
 
 def change_directory(dir):
